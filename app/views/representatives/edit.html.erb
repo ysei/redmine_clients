@@ -1,0 +1,6 @@
+<h2>担当者の編集@<%=h @client %></h2>
+<% form_for @representative, :url => client_representative_path(@client, @representative), :html => { :class => "tabular" } do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <%= submit_tag l(:button_save) %>
+  <%= javascript_tag "Form.Element.focus('representative_name');" %>
+<% end %>

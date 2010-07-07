@@ -1,0 +1,25 @@
+<table class="attributes">
+  <tr>
+    <th>電話番号:</th>
+    <td><%=h @client.phone %></td>
+  </tr>
+  <tr>
+    <th>FAX:</th>
+    <td><%=h @client.fax %></td>
+  </tr>
+  <tr>
+    <th>住所:</th>
+    <td>
+      〒<%=h @client.postal %><br />
+      <%=h @client.address %>
+    </td>
+  </tr>
+</table>
+<hr />
+
+<p>
+  <strong>説明</strong>
+</p>
+<div class="wiki">
+  <%= textilizable @client.description %>
+</div>

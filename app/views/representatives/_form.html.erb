@@ -1,0 +1,39 @@
+<%= error_messages_for 'representative' %>
+
+<div class="box" style="width: 800px;">
+  <p>
+    <%= f.label :parent_id, "名前" + '<span class="required">*</span>' %>
+    <%= f.text_field :name, :required => true %>
+  </p>
+
+  <p>
+    <%= f.label :post, "役職" %>
+    <%= f.text_field :post  %>
+  </p>
+
+  <p>
+    <%= f.label :phone, "電話番号" %>
+    <%= f.text_field :phone  %>
+  </p>
+
+  <p>
+    <%= f.label :mobile_phone, "携帯番号" %>
+    <%= f.text_field :mobile_phone  %>
+  </p>
+
+  <p>
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.text_field :email %>
+  </p>
+
+  <p>
+    <%= f.label :mobile_email, "携帯メールアドレス" %>
+    <%= f.text_field :mobile_email %>
+  </p>
+
+  <p>
+    <%= f.label :note, "備考" %>
+    <%= f.text_area :note, :rows => 5, :class => 'wiki-edit' %>
+    <%= wikitoolbar_for 'representative_note' %>
+  </p>
+</div>

@@ -1,0 +1,44 @@
+<%= error_messages_for 'client' %>
+
+<div class="box">
+  <p>
+    <%= f.label :parent_id, "親クライアント名" %>
+    <%= f.select :parent_id, client_options(f.object), :include_blank => true %>
+  </p>
+
+  <p>
+    <%= f.label :parent_id, "名称" + '<span class="required">*</span>' %>
+    <%= f.text_field :name, :required => true %>
+  </p>
+
+  <p>
+    <%= f.label :phone, "電話番号" %>
+    <%= f.text_field :phone  %>
+  </p>
+
+  <p>
+    <%= f.label :fax, "FAX番号" %>
+    <%= f.text_field :fax  %>
+  </p>
+
+  <p>
+    <%= f.label :postal, "郵便番号" %>
+    <%= f.text_field :postal  %>
+  </p>
+
+  <p>
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address  %>
+  </p>
+
+  <p>
+    <%= f.label :description, "説明" %>
+    <%= f.text_area :description, :rows => 10, :class => 'wiki-edit' %>
+  </p>
+  <%= wikitoolbar_for 'client_description' %>
+
+  <p>
+    <%= f.label :projects, "プロジェクト" %>
+    <%= f.select :project_ids, project_options, :multiple => true, :include_blank => true %>
+  </p>
+</div>

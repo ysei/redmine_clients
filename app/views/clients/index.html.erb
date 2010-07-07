@@ -1,0 +1,31 @@
+<div class="contextual">
+  <%= link_to "新しいクライアント", new_client_path, :class => "icon icon-add" %>
+</div>
+<h2>クライアント一覧</h2>
+<table class="list clients">
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>電話番号</th>
+      <th>FAX</th>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>親クライアント</th>
+      <th>子クライアント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clients.each do |client| %>
+      <tr class="<%= cycle("odd", "even") %>">
+        <td><%= link_to h(client.name), client_path(client) %></td>
+        <td><%=h client.phone %></td>
+        <td><%=h client.fax %></td>
+        <td><%=h client.postal %></td>
+        <td><%=h client.address %></td>
+        <td><%=h client.parent %></td>
+        <td><%=h client.children.collect(&:name).join(', ') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= render :partial => 'stylesheet' %>

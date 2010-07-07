@@ -1,0 +1,47 @@
+<div class="contextual">
+  <%= link_to "追加", new_client_representative_path(@client), :class => "icon icon-add" %>
+</div>
+
+<p>
+  <strong>担当者</strong>
+</p>
+<ul>
+  <% @client.reps.each do |rep| %>
+    <li class="representative">
+      <table>
+        <tbody>
+          <tr>
+            <th>名前</th>
+            <td class="big"><%=h rep.name %></td>
+            <th>役職</th>
+            <td><%=h rep.post %></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td class="big"><%=h rep.phone %></td>
+            <th>携帯番号</th>
+            <td class="big"><%=h rep.mobile_phone %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%=mail_to h(rep.email) %></td>
+            <th>携帯アドレス</th>
+            <td><%=mail_to h(rep.mobile_email) %></td>
+          </tr>
+          <tr>
+            <th>備考</th>
+            <td colspan="3">
+              <div class="wiki">
+                <%= textilizable rep.note %>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top: 5px;">
+        <%= link_to "編集", edit_client_representative_path(@client, rep), :class => "icon icon-edit" %>
+        <%= link_to "削除", client_representative_path(@client, rep), :method => :delete, :confirm => "よろしいですか?", :class => "icon icon-del" %>
+      </div>
+    </li>
+  <% end %>
+</ul>

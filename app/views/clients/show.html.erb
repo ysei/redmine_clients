@@ -1,0 +1,28 @@
+<div class="contextual">
+  <%= link_to "編集", edit_client_path(@client), :class => "icon icon-edit" %>
+  <%= link_to "削除", @client, :method => :delete, :confirm => "よろしいですか?", :class => "icon icon-del" %>
+</div>
+<h2><%=h @client.name_from_root %></h2>
+
+<div class="client">
+  <%= render :partial => 'client' %>
+  <hr />
+
+  <div id="representatives">
+    <%= render :partial => 'representatives' %>
+  </div>
+  <hr />
+
+  <div id="projects">
+    <%= render :partial => 'projects' %>
+  </div>
+</div>
+
+<% content_for :sidebar do %>
+  <div id="versions">
+    <%= render :partial => 'versions' %>
+  </div>
+<% end %>
+
+
+<%= render :partial => 'stylesheet' %>

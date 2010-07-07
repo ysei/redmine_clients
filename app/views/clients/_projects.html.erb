@@ -1,0 +1,27 @@
+<div class="contextual">
+  <%= toggle_link l(:button_add), 'purchase-form' %>
+</div>
+<p>
+  <strong>プロジェクト</strong>
+</p>
+
+<div>
+  <% remote_form_for(@client,
+                     :url => purchase_client_path(@client),
+                     :method => :put,
+                     :html => {:id => 'purchase-form', :style => (@client.projects.empty? ? '' : 'display: none;')}) do |f| %>
+    <%= error_messages_for 'client' %>
+    <%= select_tag 'project_id', project_tree_options_for_select(Project.all) %>
+    <%= submit_tag l(:button_add) %>
+    <%= toggle_link l(:button_cancel), 'purchase-form'%>
+  <% end %>
+</div>
+
+<ul>
+  <% @client.projects.each do |project| %>
+    <li>
+      <%= link_to project, :controller => "projects", :action => "show", :id => project.id %>
+      <%= link_to_remote l(:button_delete), :url => leave_client_path(@client), :with => "'project_id=#{project.id}'", :method => :put, :confirm => l(:text_are_you_sure), :class => "icon icon-del" %>
+    </li>
+  <% end %>
+</ul>

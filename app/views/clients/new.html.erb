@@ -1,0 +1,8 @@
+<h2>新しいクライアント</h2>
+<% form_for @client, :html => { :class => "tabular" } do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <%= submit_tag l(:button_save) %>
+  <%= javascript_tag "Form.Element.focus('client_name');" %>
+<% end %>
+
+<%= render :partial => 'stylesheet' %>
