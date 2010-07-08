@@ -4,5 +4,14 @@
   <%= submit_tag l(:button_save) %>
   <%= javascript_tag "Form.Element.focus('client_name');" %>
 <% end %>
+<hr />
+<% form_tag csv_import_clients_path do %>
+  <div class="box">
+    <h3>CSV インポート</h3>
+    <p>名称, 電話番号, FAX番号, 郵便番号, 住所, 説明</p>
+    <%= text_area_tag 'csv', nil, :rows => 10, :cols => 80 %>
+  </div>
+    <%= submit_tag l(:button_save) %>
+<% end %>
 
 <%= render :partial => 'stylesheet' %>

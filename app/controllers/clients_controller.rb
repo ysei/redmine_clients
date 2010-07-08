@@ -28,6 +28,16 @@ class ClientsController < ApplicationController
     end
   end
 
+  def csv_import
+    if Client.csv_import(params[:csv])
+      flash[:notice] = l(:notice_successful_create)
+      redirect_to clients_url
+    else
+      flash[:error] = "CSVインポートに失敗しました。"
+      redirect_to new_client_url
+    end
+  end
+
   def edit
   end
 

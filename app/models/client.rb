@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+require 'csv'
+
 class Client < ActiveRecord::Base
   unloadable
 
@@ -23,6 +25,23 @@ class Client < ActiveRecord::Base
 
   def name_from_root(sep=" » ")
     self_and_ancestors.collect(&:name).join(sep)
+  end
+
+  def self.csv_import(csv)
+    begin
+      transaction do
+        CSV.parse(csv, ',').each do |data|
+          new.instance_eval do
+            self.name, self.phone, self.fax, self.postal, self.address, self.description = data
+            save!
+          end
+        end
+
+        true
+      end
+    rescue ActiveRecord::RecordInvalid
+      false
+    end
   end
 
   private

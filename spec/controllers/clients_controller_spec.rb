@@ -69,6 +69,24 @@ describe ClientsController do
     end
   end
 
+  describe "POST 'csv_import'" do
+    context "with valid params" do
+      it "redirects to the clients list" do
+        Client.stub(:csv_import).with("foo,bar,baz").and_return(true)
+        post :csv_import, :csv => "foo,bar,baz"
+        response.should redirect_to clients_url
+      end
+    end
+
+    context "with invalid params" do
+      it "redirects to new client" do
+        Client.stub(:csv_import).with("foo,bar,baz").and_return(false)
+        post :csv_import, :csv => "foo,bar,baz"
+        response.should redirect_to new_client_url
+      end
+    end
+  end
+
   describe "PUT 'update'" do
     before do
       Client.stub(:find).with("37").and_return(mock_client)

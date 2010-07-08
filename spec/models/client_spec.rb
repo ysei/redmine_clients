@@ -22,4 +22,37 @@ describe Client do
       grandchild.name_from_root(' - ').should == "#{client.name} - #{child.name} - #{grandchild.name}"
     end
   end
+
+  describe ".csv_import" do
+    it "should create records from csv text" do
+      expect {
+      Client.csv_import(<<-CSV)
+Lemon,01-2345-6789,98-7654-3210,100-0000,AAA,Lorem Ipsum
+Apple,01-2345-6789,98-7654-3210,100-0000,BBB
+Orange,01-2345-6789,98-7654-3210,100-0000,CCC,Lorem Ipsum
+Bnana,123-456-7890,123-456-7891,200-0000,DDD
+CSV
+      }.to change(Client, :count).by(4)
+    end
+
+    context "when csv include duplicate data" do
+      let(:invalid_csv) do
+        <<-CSV
+Lemon,01-2345-6789,98-7654-3210,100-0000,AAA,Lorem Ipsum
+Orange,01-2345-6789,98-7654-3210,100-0000,BBB
+Orange,01-2345-6789,98-7654-3210,100-0000,BBB
+Bnana,123-456-7890,123-456-7891,200-0000,DDD
+CSV
+end
+      it "should rollback" do
+        expect {
+          Client.csv_import(invalid_csv)
+        }.to change(Client, :count).by(0)
+      end
+
+      it "should return false" do
+        Client.csv_import(invalid_csv).should be_false
+      end
+    end
+  end
 end
