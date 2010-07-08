@@ -21,9 +21,9 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(params[:client])
     if @client.save
+      flash[:notice] = l(:notice_successful_create)
       redirect_to client_url(@client)
     else
-      flash[:notice] = l(:notice_successful_create)
       render :action => 'new'
     end
   end
