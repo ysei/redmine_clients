@@ -8,11 +8,11 @@ class ClientsController < ApplicationController
   before_filter :find_client, :only => [:show, :edit, :update, :purchase, :leave, :destroy]
 
   def index
-      @clients = if params[:field] and params[:value]
-                   Client.filter(params[:field], params[:value])
-                 else
-                   Client.all
-                 end
+    @clients = if params[:field] and params[:value]
+                 Client.filter(params[:field], params[:value])
+               else
+                 Client.all
+               end
   end
 
   def show
