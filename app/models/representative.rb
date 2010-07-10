@@ -1,3 +1,5 @@
+require 'csv'
+
 class Representative < ActiveRecord::Base
   unloadable
 
