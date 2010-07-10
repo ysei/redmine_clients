@@ -11,6 +11,14 @@ describe ClientsController do
       get :index
       assigns[:clients].should == [mock_client]
     end
+
+    context "with filter query" do
+      it "assigns matched clients" do
+        Client.should_receive(:filter).with("foo", "bar").and_return([mock_client])
+        get :index, :field => "foo", :value => "bar"
+        assigns[:clients].should == [mock_client]
+      end
+    end
   end
 
   describe "GET 'show'" do

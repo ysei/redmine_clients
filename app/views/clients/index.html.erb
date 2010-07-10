@@ -2,6 +2,15 @@
   <%= link_to "新しいクライアント", new_client_path, :class => "icon icon-add" %>
 </div>
 <h2>クライアント一覧</h2>
+
+<% form_tag clients_url, :method => :get do %>
+  <% field_set_tag l(:label_filter_plural) do %>
+    <%= select_tag :field, client_search_fields(params[:field]) %>
+    <%= text_field_tag :value, params[:value], :size => 30 %>
+    <input type="submit" value="<%= l(:button_apply)%>" />
+  <% end %>
+<% end %>
+
 <table class="list clients">
   <thead>
     <tr>

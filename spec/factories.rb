@@ -6,3 +6,7 @@ Factory.define :client do |f|
   f.address 'Lorem Ipsum'
   f.description ''
 end
+
+Factory.define :representative do |f|
+  f.name "John"
+end

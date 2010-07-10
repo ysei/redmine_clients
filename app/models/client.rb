@@ -21,6 +21,17 @@ class Client < ActiveRecord::Base
   protected_attributes.delete("parent_id")
   undef parent_id=
 
+  FILTERABLE_FIELDS = %w[name address phone fax]
+  named_scope :filter, lambda {|field, value|
+    if field == "representative"
+      { :include => :representatives, :conditions => ["representatives.name LIKE ?", "%#{value}%"] }
+    elsif FILTERABLE_FIELDS.include? field
+      { :conditions => ["clients.#{field} LIKE ?", "%#{value}%"] }
+    else
+      { }
+    end
+  }
+
   def to_s
     name
   end

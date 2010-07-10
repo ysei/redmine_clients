@@ -68,4 +68,28 @@ end
       end
     end
   end
+
+  describe ".filter" do
+    let (:client_a) { Factory(:client, :name => "abcde") }
+    let (:client_b) { Factory(:client, :name => "efgdh") }
+    before { Factory(:representative, :name => "hijk", :client => client_a) }
+
+    it "部分一致検索ができること" do
+      result1 = Client.filter("name", "bc")
+      result1.should include client_a
+      result1.should_not include client_b
+
+      result2 = Client.filter("name", "gd")
+      result2.should include client_b
+      result2.should_not include client_a
+
+      Client.filter("name", "e").should include client_a, client_b
+    end
+
+    it "担当者の名前からも検索できること" do
+      result = Client.filter("representative", "ij")
+      result.should include client_a
+      result.should_not include client_b
+    end
+  end
 end
