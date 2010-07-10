@@ -36,9 +36,4 @@
     <%= f.text_area :description, :rows => 10, :class => 'wiki-edit' %>
   </p>
   <%= wikitoolbar_for 'client_description' %>
-
-  <p>
-    <%= f.label :projects, "プロジェクト" %>
-    <%= f.select :project_ids, project_options, :multiple => true, :include_blank => true %>
-  </p>
 </div>
