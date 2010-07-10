@@ -55,4 +55,17 @@ end
       end
     end
   end
+
+  describe "#update_attributes" do
+    context "when specify parent id" do
+      let (:parent) { Factory(:client, :name => "Parent") }
+      let (:child) { Factory(:client, :name => "Child") }
+
+      before { child.update_attributes(:parent_id => parent.id) }
+
+      it "should move to child of the parent" do
+        child.parent.should == parent
+      end
+    end
+  end
 end

@@ -15,8 +15,10 @@ class Client < ActiveRecord::Base
   has_many :client_projects, :dependent => :destroy
   has_many :projects, :through => :client_projects, :uniq => true
 
+  # Hack for old awesome nested set
   before_save :store_new_parent
   after_save :move_to_new_parent
+  protected_attributes.delete("parent_id")
   undef parent_id=
 
   def to_s
