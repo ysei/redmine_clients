@@ -10,7 +10,7 @@ module ClientsHelper
   end
 
   def client_options(client=nil)
-    clients = Client.all.delete_if{|c| c == client }
+    clients = Client.order_by_name.all.delete_if{|c| c == client }
     clients.collect {|c| [c.name, c.id] }
   end
 

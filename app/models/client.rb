@@ -32,6 +32,8 @@ class Client < ActiveRecord::Base
     end
   }
 
+  named_scope :order_by_name, :order => "clients.name ASC"
+
   def to_s
     name
   end
