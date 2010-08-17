@@ -14,7 +14,7 @@ describe ClientsController do
 
     context "with filter query" do
       it "assigns matched clients" do
-        Client.should_receive(:filter).with("foo", "bar").and_return([mock_client])
+        Client.stub_chain(:order_by_name, :filter).with("foo", "bar").and_return([mock_client])
         get :index, :field => "foo", :value => "bar"
         assigns[:clients].should == [mock_client]
       end

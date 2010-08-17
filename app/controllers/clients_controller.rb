@@ -9,9 +9,9 @@ class ClientsController < ApplicationController
 
   def index
     @clients = if params[:field] and params[:value]
-                 Client.filter(params[:field], params[:value])
+                 Client.order_by_name.filter(params[:field], params[:value])
                else
-                 Client.all
+                 Client.order_by_name.all
                end
   end
 
