@@ -31,8 +31,8 @@
         <td><%=h client.fax %></td>
         <td><%=h client.postal %></td>
         <td><%=h client.address %></td>
-        <td><%=h client.parent %></td>
-        <td><%=h client.children.collect(&:name).join(', ') %></td>
+        <td><%=link_to h(client.parent), client_path(client) %></td>
+        <td><%=client.children.collect{|child| link_to h(child), client_path(child) }.join(', ') %></td>
       </tr>
     <% end %>
   </tbody>
