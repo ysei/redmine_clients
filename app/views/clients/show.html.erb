@@ -2,7 +2,7 @@
   <%= link_to "編集", edit_client_path(@client), :class => "icon icon-edit" %>
   <%= link_to "削除", @client, :method => :delete, :confirm => "よろしいですか?", :class => "icon icon-del" %>
 </div>
-<h2><%=h @client.name_from_root %></h2>
+<h2><%= client_name_from_root_with_link @client %></h2>
 
 <div class="client">
   <%= render :partial => 'client' %>
@@ -12,6 +12,13 @@
     <%= render :partial => 'representatives' %>
   </div>
   <hr />
+
+  <% unless @client.children.blank? %>
+    <div id="children">
+      <%= render :partial => 'children' %>
+    </div>
+    <hr />
+  <% end %>
 
   <div id="projects">
     <%= render :partial => 'projects' %>

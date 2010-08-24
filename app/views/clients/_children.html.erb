@@ -1,0 +1,10 @@
+<p>
+  <strong>子クライアント</strong>
+</p>
+<ul>
+  <% @client.children.each do |child| %>
+    <li class="child">
+      <%=link_to h(child), client_path(child) %>
+    </li>
+  <% end %>
+</ul>

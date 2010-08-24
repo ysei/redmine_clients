@@ -17,4 +17,14 @@ module ClientsHelper
   def project_options
     Project.all.collect{|c| [c.name, c.id] }
   end
+
+  def client_name_from_root_with_link(client, sep=" » ")
+    client.self_and_ancestors.collect {|c|
+      if c == client
+        h c.name
+      else
+        link_to c.name, client_path(c)
+      end
+    }.join(sep)
+  end
 end
