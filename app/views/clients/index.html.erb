@@ -31,7 +31,7 @@
         <td><%=h client.fax %></td>
         <td><%=h client.postal %></td>
         <td><%=h client.address %></td>
-        <td><%=link_to h(client.parent), client_path(client.parent) %></td>
+        <td><%=link_to(h(client.parent), client_path(client.parent)) if client.parent %></td>
         <td><%=client.children.collect{|child| link_to h(child), client_path(child) }.join(', ') %></td>
       </tr>
     <% end %>
