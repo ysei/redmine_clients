@@ -5,7 +5,7 @@ Redmine::Plugin.register :redmine_clients do
   name 'Redmine Clients plugin'
   author 'Kawaguchi Masaya'
   description 'This is a plugin for Redmine'
-  version '0.0.1'
+  version '0.0.2'
 
-  menu :top_menu, :clients, { :controller => 'clients', :action => 'index' }, :caption => "クライアント", :after => :projects, :if => lambda{ User.current.logged? }
+  menu :top_menu, :clients, { :controller => 'clients', :action => 'index' }, :caption => "クライアント", :after => :projects
 end
